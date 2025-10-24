@@ -23,7 +23,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'             
-          extensions: mbstring, intl, pdo_pgsql, zip
+          extensions: mbstring, intl, pdo_pgsql, sqlite3, pdo_sqlite, zip
           tools: composer:v2
           ini-values: memory_limit=-1
 
