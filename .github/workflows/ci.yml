@@ -1,6 +1,6 @@
 name: CI
 on: [push, pull_request]
-  jobs:
+jobs:
   php:
     runs-on: ubuntu-latest
     services:
@@ -22,7 +22,7 @@ on: [push, pull_request]
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'             # ⬅️ naikkan ke 8.4 (atau 8.3)
+          php-version: '8.4'             
           extensions: mbstring, intl, pdo_pgsql, zip
           tools: composer:v2
           ini-values: memory_limit=-1
