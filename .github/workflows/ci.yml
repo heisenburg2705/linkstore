@@ -22,7 +22,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'             
+          php-version: '8.4'
           extensions: mbstring, intl, pdo_pgsql, sqlite3, pdo_sqlite, zip
           tools: composer:v2
           ini-values: memory_limit=-1
@@ -33,8 +33,19 @@ jobs:
           path: vendor
           key: composer-${{ hashFiles('**/composer.lock') }}
 
-      - name: Install dependencies
+      - name: Install dependencies (Composer)
         run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install & Build (Vite)
+        run: |
+          npm ci
+          npm run build
 
       - name: Prepare app
         run: |
@@ -53,4 +64,3 @@ jobs:
           QUEUE_CONNECTION: sync
           MAIL_MAILER: array
         run: php artisan test
-
