@@ -10,6 +10,11 @@ services:
       - "9001:9001"
     volumes:
       - minio:/data
+    networks:
+      - sail
 volumes:
   minio:
 
+networks:
+  sail:
+    driver: bridge
